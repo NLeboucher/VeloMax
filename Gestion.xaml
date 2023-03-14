@@ -1,0 +1,155 @@
+﻿<Window x:Class="VeloMax.Gestion"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VeloMax"
+        mc:Ignorable="d"
+        Title="Gestion" Height="450" Width="820">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="243*"/>
+            <ColumnDefinition Width="569*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle StrokeThickness="10" Fill="black" Margin="0,0,62.449,1" />
+        <Image Height="355" VerticalAlignment="Top" Source="https://images.pexels.com/photos/1595483/pexels-photo-1595483.jpeg" HorizontalAlignment="Left" Width="657" Margin="181,0,-26,0" Grid.ColumnSpan="2"/>
+        <TextBlock FontFamily="Verdana" FontSize="30" Margin="25,10,62.449,0" TextWrapping="Wrap" Text="Gestion " VerticalAlignment="Top" Height="110" Foreground="White"/>
+
+        <ComboBox x:Name = "Choix_MD" HorizontalAlignment = "Left"
+         Margin = "0,238,0,0" VerticalAlignment = "Top" Width = "145" Height="27" ContextMenuOpening="Choix_MD_ContextMenuOpening">
+            <ComboBoxItem IsSelected="True" Content = "Choix" />
+            <ComboBoxItem Content = "Pieces de rechanges" />
+            <ComboBoxItem Content = "Velos" />
+            <ComboBoxItem Content = "Assemblage" />
+            <ComboBoxItem Content = "Clients_Particuliers" />
+            <ComboBoxItem Content = "Boutiques_Specialisees" />
+            <ComboBoxItem Content = "Fournisseurs" />
+            <ComboBoxItem Content = "Commandes" />
+            <ComboBoxItem Content = "Approvisionnement" />
+            <ComboBoxItem Content = "Programmes client" />
+            <ComboBoxItem Content = "Programmes de fidélité" />
+        </ComboBox>
+        <Button x:Name="Validateur_MD" Content="Sélectionner" HorizontalAlignment="Left" Margin="-1,304,0,0" VerticalAlignment="Top" Width="146" Height="30" Click="Validateur_MD_Click" />
+
+        <StackPanel x:Name="Pieces" Visibility="Hidden" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="True" Height="335" HorizontalAlignment="Left" Margin="189,20,0,0" x:Name="GridPiece" VerticalAlignment="Top" Width="613" ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding}"/>
+
+        </StackPanel>
+
+        <StackPanel x:Name="Velo" Visibility="Hidden" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="True" Height="335" HorizontalAlignment="Left" Margin="189,20,0,0" Name="GridVélo" VerticalAlignment="Top" Width="613" ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ItemsSource="{Binding}">
+            </DataGrid>
+        </StackPanel>
+        <StackPanel x:Name="Assemb" Visibility="Hidden" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="True" Height="335" HorizontalAlignment="Left" Margin="189,20,0,0" Name="GridAssemblage" VerticalAlignment="Top" Width="613" ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding}">
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel x:Name="Part" Visibility="Hidden" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="True" Height="335" HorizontalAlignment="Left" Margin="189,20,0,0" Name="GridParticulier" VerticalAlignment="Top" Width="613" ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding}">
+            </DataGrid>
+        </StackPanel>
+        <StackPanel x:Name="Boutique" Visibility="Hidden" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="True" Height="335" HorizontalAlignment="Left" Margin="189,20,0,0" Name="GridBoutique" VerticalAlignment="Top" Width="533" ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding}">
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel x:Name="Fourniss" Visibility="Hidden" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="True" Height="335" HorizontalAlignment="Left" Margin="189,20,0,0" Name="GridFournisseur" VerticalAlignment="Top" Width="613" ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding}">
+            </DataGrid>
+        </StackPanel>
+        <CheckBox x:Name="FiltreNormal" Content="Normal" Visibility="Hidden" HorizontalAlignment="Left" Margin="363.551,375,0,0" VerticalAlignment="Top" Height="23" Width="78" Checked="FiltreNormal_Checked" Grid.Column="1"/>
+        <CheckBox x:Name="FiltreFourniss" Content="Par Fournisseurs" Visibility="Hidden" HorizontalAlignment="Left" Margin="223.551,374,0,0" VerticalAlignment="Top" Height="24" Width="108" Checked="FiltreFourniss_Checked" Grid.Column="1"/>
+        <StackPanel x:Name="Commande" Visibility="Hidden" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="True" Height="335" HorizontalAlignment="Left" Margin="189,20,0,0" Name="GridCommande" VerticalAlignment="Top" Width="613" ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding}">
+            </DataGrid>
+        </StackPanel>
+        <TextBox x:Name="NumCommande" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="438.551,61,0,0" TextWrapping="Wrap" Text="Num commande" VerticalAlignment="Top" Width="102" Grid.Column="1"/>
+        <TextBox x:Name="IdBoutique" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="438.551,103,0,0" TextWrapping="Wrap" Text="Id boutique" VerticalAlignment="Top" Width="102" Grid.Column="1"/>
+        <TextBox x:Name="IdParticulier" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="438.551,147,0,0" TextWrapping="Wrap" Text="Id particulier" VerticalAlignment="Top" Width="102" Grid.Column="1"/>
+        <TextBox x:Name="NoModele" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="438.551,202,0,0" TextWrapping="Wrap" Text="No modele" VerticalAlignment="Top" Width="102" Grid.Column="1"/>
+        <TextBox x:Name="NumProd" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="438.551,254,0,0" TextWrapping="Wrap" Text="Num prod" VerticalAlignment="Top" Width="102" Grid.Column="1"/>
+        <Button x:Name="Valid_AddComm" Visibility="Hidden" Content="Ajouter Commande" HorizontalAlignment="Left" Margin="438.551,301,0,0" VerticalAlignment="Top" Width="116" Height="28" Click="Valid_AddComm_Click" Grid.Column="1"/>
+
+        <StackPanel x:Name="Appro" Visibility="Hidden" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="True" Height="340" HorizontalAlignment="Left" Margin="189,20,0,0" Name="GridAppro" VerticalAlignment="Top" Width="533" ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding}">
+            </DataGrid>
+        </StackPanel>
+        <Button x:Name="ValideAppro" Content="Mettre à Jour" Visibility="Hidden" HorizontalAlignment="Left" Margin="200,390,0,0" VerticalAlignment="Top" Width="75" Click="ValideAppro_Click" Grid.ColumnSpan="2"/>
+
+        <StackPanel x:Name="Programmes" Visibility="Hidden" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="True" Height="340" HorizontalAlignment="Left" Margin="189,20,0,0" Name="GridFidelite" VerticalAlignment="Top" Width="533" ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding}">
+            </DataGrid>
+        </StackPanel>
+        <Button x:Name="ValideFidelite" Content="Mettre à Jour" Visibility="Hidden" HorizontalAlignment="Left" Margin="200,390,0,0" VerticalAlignment="Top" Width="75" Click="ValideFidelite_Click" Grid.ColumnSpan="2"/>
+
+        <StackPanel x:Name="ProgClient" Visibility="Hidden" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="True" Height="340" HorizontalAlignment="Left" Margin="189,20,0,0" Name="GridProgClient" VerticalAlignment="Top" Width="533" ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding}">
+            </DataGrid>
+        </StackPanel>
+        <TextBox x:Name="ChNom" HorizontalAlignment="Left" Height="23" Visibility="Hidden" Margin="195,381,0,0" TextWrapping="Wrap" Text="Nom" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="ChPrenom" HorizontalAlignment="Left" Height="23" Visibility="Hidden" Margin="76.551,381,0,0" TextWrapping="Wrap" Text="Prénom" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <Button x:Name="ChercherClient" Content="Chercher" Visibility="Hidden" HorizontalAlignment="Left" Margin="223.551,385,0,0" VerticalAlignment="Top" Width="75" Click="ChercherClient_Click" Grid.Column="1"/>
+
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="25,374,0,0" VerticalAlignment="Top" Width="95" Click="PagePrece_Click"/>
+
+        <Button x:Name="Ajoutervelo"  Visibility="Hidden" HorizontalAlignment="Left" Margin="181,358,0,0" VerticalAlignment="Top" Width="75" AutomationProperties.Name="Ajoutervelo" Click="Ajoutervelo_Click" Grid.ColumnSpan="2">
+
+            <ComboBox Width="120"/>
+        </Button>
+        <TextBox x:Name="Velonom" Grid.Column="1" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="15,355,0,0" TextWrapping="Wrap" Text="Nom" VerticalAlignment="Top" Width="70" AutomationProperties.Name="Velonom"/>
+        <TextBox x:Name="Velograndeur" Grid.Column="1" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="90,355,0,0" TextWrapping="Wrap" Text="Grandeur" VerticalAlignment="Top" Width="70" AutomationProperties.Name="Velograndeur"/>
+        <TextBox x:Name="Veloprix_Unitaire" Grid.Column="1" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="165,355,0,0" TextWrapping="Wrap" Text="Prix" VerticalAlignment="Top" Width="70" AutomationProperties.Name="Veloprix_Unitaire"/>
+        <TextBox x:Name="VeloligneProduit" Grid.Column="1" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="240,355,0,0" TextWrapping="Wrap" Text="Ligne_produit" VerticalAlignment="Top" Width="70" AutomationProperties.Name="VeloligneProduit"/>
+        <TextBox x:Name="VelonbDispo" Grid.Column="1" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="318,355,0,0" TextWrapping="Wrap" Text="nb_Dispo" VerticalAlignment="Top" Width="70" AutomationProperties.Name="VelonbDispo"/>
+        <TextBox x:Name="VelonbVendu" Grid.Column="1" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="393,355,0,0" TextWrapping="Wrap" Text="nbVendu" VerticalAlignment="Top" Width="70" AutomationProperties.Name="VelonbVendu"/>
+        <ComboBox x:Name="numProdVelo" HorizontalAlignment="Left" Margin="217,362,0,0" VerticalAlignment="Top" Width="86" Grid.ColumnSpan="2" Visibility="Hidden" Text="numProd" />
+        <ComboBox x:Name="cadre" HorizontalAlignment="Left" Margin="73,362,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden" Text="cadre" />
+        <ComboBox x:Name="guidon" HorizontalAlignment="Left" Margin="174,362,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden" Text="guidon" />
+        <ComboBox x:Name="freins" HorizontalAlignment="Left" Margin="276,362,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden" Text="freins" />
+        <ComboBox x:Name="selle" HorizontalAlignment="Left" Margin="379,362,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden" Text="selle" />
+        <ComboBox x:Name="derailleurAvant" HorizontalAlignment="Left" Margin="483,362,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden" Text="derailleurAvant" />
+        <ComboBox x:Name="derailleurArriere" HorizontalAlignment="Left" Margin="217,390,0,0" VerticalAlignment="Top" Width="86" Grid.ColumnSpan="2" Visibility="Hidden" Text="derailleurArriere" />
+        <ComboBox x:Name="roueAvant" HorizontalAlignment="Left" Margin="73,390,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden" Text="roueAvant" />
+        <ComboBox x:Name="roueArriere" HorizontalAlignment="Left" Margin="174,390,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden" Text="roueArriere"/>
+        <ComboBox x:Name="reflecteurs" HorizontalAlignment="Left" Margin="276,390,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden" Text="reflecteurs" />
+        <ComboBox x:Name="pedaier" HorizontalAlignment="Left" Margin="379,390,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden" Text="pedalier" />
+        <ComboBox x:Name="ordinateur" HorizontalAlignment="Left" Margin="483,390,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden" Text="ordinateur" />
+        <ComboBox x:Name="ajouterVelo" HorizontalAlignment="Left" Margin="224,376,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden" />
+        <ComboBox x:Name="panier" HorizontalAlignment="Left" Margin="483,329,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Visibility="Hidden"/>
+        <Button x:Name="AjouterListe" Content="AjouterListe" HorizontalAlignment="Left" Margin="181,370,0,0" VerticalAlignment="Top" Width="75" AutomationProperties.Name="AjouterListe" Click="AjoutListeMontage" Visibility="Hidden" Grid.ColumnSpan="2"  />
+        <Button x:Name="VirerPieceDeListe" Content="VirerPieceDeListe" HorizontalAlignment="Left" Margin="181,391,0,0" VerticalAlignment="Top" Width="75" AutomationProperties.Name="VirerPieceDeListe" Click="SupprimerPieceClick" Visibility="Hidden" Grid.ColumnSpan="2"  />
+        <Button x:Name="Confirmer" Content="Confirmer" HorizontalAlignment="Left" Margin="149,399,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" AutomationProperties.Name="AjouterListe" Click="ConfirmerAjouterListe" Visibility="Hidden" />
+        <Button x:Name="AjoutPiece" Grid.ColumnSpan="2" Content="Ajouter Piece" HorizontalAlignment="Left" Margin="181,364,0,0" VerticalAlignment="Top" Width="75" Click="AjoutPieceClick" Visibility="Hidden" Height="23" />
+        <TextBox x:Name="description" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="18,364,0,0" TextWrapping="Wrap" Text="description" VerticalAlignment="Top" Width="120" Visibility="Hidden" />
+        <TextBox x:Name="dateInscription" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="143,364,0,0" TextWrapping="Wrap" Text="date Inscription" VerticalAlignment="Top" Width="120" Visibility="Hidden" />
+        <TextBox x:Name="dateDiscontinue" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="268,364,0,0" TextWrapping="Wrap" Text="dateDiscontinuité" VerticalAlignment="Top" Width="120" Visibility="Hidden" />
+        <TextBox x:Name="prix_Unitaire" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="393,364,0,0" TextWrapping="Wrap" Text="prix Unitaire" VerticalAlignment="Top" Width="120" Visibility="Hidden" />
+        <TextBox x:Name="NbDispo" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="18,391,0,0" TextWrapping="Wrap" Text="nb Dispo" VerticalAlignment="Top" Width="120" Visibility="Hidden" />
+        <TextBox x:Name="categorie" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="143,391,0,0" TextWrapping="Wrap" Text="categorie" VerticalAlignment="Top" Width="120" Visibility="Hidden" />
+        <TextBox x:Name="nbVendu" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="268,391,0,0" TextWrapping="Wrap" Text="nb Vendu" VerticalAlignment="Top" Width="120" Visibility="Hidden" />
+        <ComboBox x:Name="NumProdPiece" Grid.Column="1" HorizontalAlignment="Left" Margin="23,391,0,0" VerticalAlignment="Top" Width="120" ContextMenuOpening="NumProdPieceOpen" Visibility="Hidden"/>
+        <Button x:Name="Approvisionner" Content="Approvisionner" HorizontalAlignment="Left" Margin="23,375,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Approvisionnerclick" Visibility="Hidden"/>
+    </Grid>
+</Window>
